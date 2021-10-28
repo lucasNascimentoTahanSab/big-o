@@ -38,6 +38,7 @@
                     </div>
                 </div>
             </nav>
+
             <!-- Header-->
             <header class="masthead text-center text-white">
                 <div class="masthead-content">
@@ -46,8 +47,8 @@
                         <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">BigO!</a>
                     </div>
                 </div>
-
             </header>
+
             <!-- Content section 1-->
             <section id="scroll">
                 <div class="container px-5">
@@ -66,6 +67,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Content section 2-->
             <section>
                 <div class="container px-5">
@@ -85,6 +87,7 @@
                     </div>
                 </div>
             </section>
+
             <!-- Content section 3-->
             <section>
                 <div class="container px-5">
@@ -141,9 +144,7 @@
                 </div>
             </form>
 
-
             <!-- login Modal-->
-
             <form action="/auth" method="post">
                 <div class="modal fade" id="myModallogin" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -175,6 +176,7 @@
                     </div>
                 </div>
             </form>
+
             <footer class="footer py-4">
                 <div class="container">
                     <div class="row align-items-center">
@@ -188,32 +190,9 @@
                     </div>
                 </div>
             </footer>
+
             <script src="/assets/js/jquery-3.3.1.js"></script>
             <script src="/assets/js/bootstrap.js"></script>
-            <script>
-                $(document).ready(function () {
-                    //showing data to modal for edit record
-                    $('#mytable').on('click', '.edit', function () {
-                        var usuario_id = $(this).data('id');
-                        var usuario_name = $(this).data('usuario_name');
-                        var usuario_email = $(this).data('usuario_email');
-                        var usuario_senha = $(this).data('usuario_senha');
-                        $('#EditModal').modal('show');
-                        $('.usuario_name').val(usuario_name);
-                        $('.email').val(usuario_email);
-                        $('.senha').val(usuario_senha);
-                        $('.usuario_id').val(usuario_id);
-
-                    });
-                    //showing modal for delete record
-                    $('#mytable').on('click', '.delete', function () {
-                        var usuario_id = $(this).data('id');
-                        $('#DeleteModal').modal('show');
-                        $('.usuario_id2').val(usuario_id);
-                    });
-
-                });
-            </script>
 
             <!-- Bootstrap core JS-->
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -222,5 +201,6 @@
                 integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
                 crossorigin="anonymous"></script>
         </body>
+    </body>
 
 </html>
