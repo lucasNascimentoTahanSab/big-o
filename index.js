@@ -173,20 +173,24 @@ function realizarLoginComoUsuario(req, res) {
   const email = req.body.usuario_email
   const senha = req.body.usuario_senha;
   if (email && senha) {
-    const sql = 'SELECT * FROM usuario WHERE usuario_email = ? AND usuario_senha = ?';
-    mysqlConnection.query(sql, [email, senha], (erro, resultados) => {
-      if (resultados.length > 0) {
-        req.session.loggedin = true;
-        req.session.usuario_email = email;
-        res.redirect('/feed');
-      } else {
-        res.send('Email ou senha incorretos!');
-      }
-
-      res.end();
-    });
+    encaminharUsuarioParaFeedCasoExista([email, senha], req, res);
   } else {
     res.send('Entre com email e senha válidos!');
     res.end();
   }
+}
+
+function encaminharUsuarioParaFeedCasoExista(credenciais, req, res) {
+  const sql = 'SELECT * FROM usuario WHERE usuario_email = ? AND usuario_senha = ?';
+  mysqlConnection.query(sql, credenciais, (erro, resultados) => {
+    if (resultados.length > 0) {
+      req.session.loggedin = true;
+      req.session.usuario_email = credenciais[0];
+      res.redirect('/feed');
+    } else {
+      res.send('Email ou senha incorretos!');
+    }
+
+    res.end();
+  });
 }
