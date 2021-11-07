@@ -74,6 +74,7 @@ input {
   border-style: solid;
   border-color: var(--bo-color-medium-dark);
   border-radius: .3125rem;
+  width: 17.3125rem;
   height: var(--bo-font-size-text);
   padding: var(--bo-font-size-text);
 }
@@ -166,7 +167,6 @@ img {
   flex-direction: column;
   justify-content: center;
   gap: .3125rem;
-  width: 100%;
 }
 
 .clickable {
