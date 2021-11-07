@@ -159,6 +159,9 @@ img {
 }
 
 .content__item {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--bo-font-size-text) * 2);
   width: 50%;
 }
 
