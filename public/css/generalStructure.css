@@ -113,6 +113,8 @@ img {
 }
 
 .button--call-to-action {
+  display: flex;
+  justify-content: center;
   background-color: var(--bo-color-pink);
   color: var(--bo-color-white);
   font-weight: var(--bo-font-weight-title);
@@ -170,6 +172,25 @@ img {
   flex-direction: column;
   justify-content: center;
   gap: .3125rem;
+}
+
+.input-search-container {
+  position: relative;
+  width: fit-content;
+}
+
+.input__image {
+  position: absolute;
+  right: 0;
+  width: 15%;
+  padding: .3rem;
+  background-color: var(--bo-color-white);
+  border-top-right-radius: .3125rem;
+  border-bottom-right-radius: .3125rem;
+}
+
+.input--without-border {
+  border-color: var(--bo-color-white);
 }
 
 .clickable {
