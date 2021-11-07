@@ -7,8 +7,8 @@
   --bo-font-weight-title: 700;
   --bo-font-weight-text: 400;
 
-  --bo-font-size-title: 2.1rem;
-  --bo-font-size-text: .85rem;
+  --bo-font-size-title: calc(60% + 3.2vmin);
+  --bo-font-size-text: calc(60% + 0.7vmin);  
   
   --bo-font-family-logo: "Kameron", serif;
   --bo-font-family-text: "Montserrat", sans-serif;
@@ -74,8 +74,9 @@ input {
   border-style: solid;
   border-color: var(--bo-color-medium-dark);
   border-radius: .3125rem;
+  width: 17.3125rem;
   height: var(--bo-font-size-text);
-  padding: var(--bo-font-size-text);
+  padding: .55rem;
 }
 
 img {
@@ -158,6 +159,9 @@ img {
 }
 
 .content__item {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--bo-font-size-text) * 2);
   width: 50%;
 }
 
@@ -166,7 +170,6 @@ img {
   flex-direction: column;
   justify-content: center;
   gap: .3125rem;
-  width: 100%;
 }
 
 .clickable {
@@ -180,4 +183,10 @@ img {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+@media (max-width: 35rem) {
+  .content {
+    flex-direction: column;
+  }
 }
