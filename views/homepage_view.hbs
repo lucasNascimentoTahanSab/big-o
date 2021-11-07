@@ -1,206 +1,148 @@
 <html lang="en">
 
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>BigO!</title>
-        <link rel="icon" type="image/x-icon" href="img/biog.png" />
-        <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900"
-            rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i"
-            rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" type="image/x-icon" href="img/logo.svg" />
+    <link href="css/generalStructure.css" rel="stylesheet" />
+    <link href="css/bootstrap2.css" rel="stylesheet" type="text/css" />
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <title>BigO!</title>
+  </head>
 
-    <body>
+  <body>
 
-        <body id="page-top">
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-dark   navbar-custom fixed-top">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="#page-top"><img src="img/biog.png" alt="..." /></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                        aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarResponsive">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link clickable" data-toggle="modal"
-                                    data-target="#myModalAdd">Cadastro</a></li>
-                            <li class="nav-item"><a class="nav-link btn btn-outline-success my-2 my-sm-0 clickable"
-                                    data-toggle="modal" data-target="#myModallogin">Login</a></li>
-                    </div>
+    <body id="page-top">
+      <nav>
+        <div class="navbar__item navbar__item--left">
+          <a class="navbar__logo" href="#page-top">
+            <img class="clickable no-select" src="img/logo_com_nome.svg" alt="Logo BigO!" />
+          </a>
+        </div>
+        <div class="navbar__item navbar__item--right">
+          <button class="navbar__button no-select" data-toggle="modal" data-target="#signup">Cadastrar</button>
+          <button class="button--call-to-action no-select" data-toggle="modal" data-target="#signin">Entrar</button>
+        </div>
+      </nav>
+      <main>
+        <section class="hero">
+          <h1 class="hero__title">Compartilhe conhecimento com a BigO!</h1>
+          <a href="#scroll">
+            <img class="clickable no-select" src="img/down_arrow.svg" alt="Seta para baixo" />
+          </a>
+        </section>
+        <div class="content-container">
+          <section id="scroll" class="content">
+            <div class="content__item">
+              <h2>O que somos?</h2>
+              <p>
+                <strong>BigO!</strong> é uma startup que propõe criar uma plataforma que coloca <strong>
+                  estudantes da área da computação no mesmo lugar para o compartilhamento de conhecimentos</strong>.
+              </p>
+            </div>
+            <div>
+              <img class="no-select" src="img/homepage-first-image.svg" alt="..." />
+            </div>
+          </section>
+          <section class="content">
+            <div>
+              <img class="no-select" src="img/homepage-second-image.svg" alt="..." />
+            </div>
+            <div class="content__item">
+              <h2>Conectividade para evoluir</h2>
+              <p>
+                Nossa plataforma permite que o usuário <strong>envie vídeos, links e outros arquivos</strong> sobre
+                conteúdos relacionados à computação para que outros usuários do sistema possam ver.
+              </p>
+            </div>
+          </section>
+          <section class="content">
+            <div class="content__item">
+              <h2>Se junte à gente!</h2>
+              <p>
+                Cadastre-se e comece a <strong>compartilhar e receber conteúdos de seu interesse</strong>. A
+                <strong>BigO!</strong> te ajuda a se formar mais rápido e com mais conexões!
+              </p>
+            </div>
+            <div>
+              <img class="no-select" src="img/homepage-third-image.svg" alt="..." />
+            </div>
+          </section>
+        </div>
+      </main>
+
+      <form action="/save" method="post">
+        <div id="signup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal__header">
+                <button data-dismiss="modal" aria-label="Close">
+                  <img src="img/close.svg" alt="Fechar tela de cadastro">
+                </button>
+              </div>
+              <section class="modal__form-container">
+                <h2>Bem-vindo!</h2>
+                <div class="input-container">
+                  <label for="name">Nome</label>
+                  <input id="name" class="input--text" type="text" name="usuario_name" required>
                 </div>
-            </nav>
-
-            <!-- Header-->
-            <header class="masthead text-center text-white">
-                <div class="masthead-content">
-                    <div class="container px-5">
-                        <h1 class="masthead-heading mb-0">Conhecimento compartilhado</h1>
-                        <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#scroll">BigO!</a>
-                    </div>
+                <div class="input-container">
+                  <label for="email">Email</label>
+                  <input id="email" class="input--text" type="email" name="usuario_email" required>
                 </div>
-            </header>
-
-            <!-- Content section 1-->
-            <section id="scroll">
-                <div class="container px-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6 order-lg-2">
-                            <div class="p-5"><img class="img-fluid rounded-circle" src="img/01.jpg" alt="..." />
-                            </div>
-                        </div>
-                        <div class="col-lg-6 order-lg-1">
-                            <div class="p-5">
-                                <h2 class="display-4">O que somos ?</h2>
-                                <p> BigO! é uma startup que propõe criar uma plataforma que coloca estudantes da área da
-                                    computação no mesmo lugar para o compartilhamento do conhecimento</p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-container">
+                  <label for="password">Senha</label>
+                  <input id="password" class="input--text" type="password" name="usuario_senha" required>
                 </div>
-            </section>
+                <footer class="modal__form-footer">
+                  <button class="button--call-to-action" type="submit">Cadastrar</button>
+                </footer>
+              </section>
+            </div>
+          </div>
+        </div>
+      </form>
 
-            <!-- Content section 2-->
-            <section>
-                <div class="container px-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6">
-                            <div class="p-5"><img class="img-fluid rounded-circle" src="img/02.jpg" alt="..." />
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <h2 class="display-4">Conectividade para evoluir</h2>
-                                <p>Nossa plataforma permite que usuário envie vídeos, links e outros arquivos sobre
-                                    conteúdo relacionados a computação para que outros usuários do sistema possam ver.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+      <form action="/auth" method="post">
+        <div id="signin" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal__header">
+                <button data-dismiss="modal" aria-label="Close">
+                  <img src="img/close.svg" alt="Fechar tela de login">
+                </button>
+              </div>
+              <section class="modal__form-container">
+                <h2>Bem-vindo de volta!</h2>
+                <div class="input-container">
+                  <label for="email">Email</label>
+                  <input id="email" class="input--text" type="email" name="usuario_email" required>
                 </div>
-            </section>
-
-            <!-- Content section 3-->
-            <section>
-                <div class="container px-5">
-                    <div class="row gx-5 align-items-center">
-                        <div class="col-lg-6 order-lg-2">
-                            <div class="p-5"><img class="img-fluid rounded-circle" src="img/03.jpg" alt="..." />
-                            </div>
-                        </div>
-                        <div class="col-lg-6 order-lg-1">
-                            <div class="p-5">
-                                <h2 class="display-4">Se junte a gente!</h2>
-                                <p>Cadastre-se e comece a compartilhar e receber conteúdos de seu interesse. A BigO! te
-                                    ajuda a se formar mais rápido e com mais conexão. </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-container">
+                  <label for="password">Senha</label>
+                  <input id="password" class="input--text" type="password" name="usuario_senha" required>
                 </div>
-            </section>
+                <footer class="modal__form-footer">
+                  <button class="button--call-to-action" type="submit">Entrar</button>
+                </footer>
+              </section>
+            </div>
+          </div>
+        </div>
+      </form>
 
-            <!-- AddModal-->
-            <form action="/save" method="post">
-                <div class="modal fade" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Cadaste-se no sistema</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <input type="text" name="usuario_name" class="form-control" placeholder="seu nome"
-                                        required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="email" name="usuario_email" class="form-control" placeholder="email"
-                                        required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" name="usuario_senha" class="form-control" placeholder="senha"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
-                                <button type="submit" class="btn btn-primary">cadastrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <!-- login Modal-->
-            <form action="/auth" method="post">
-                <div class="modal fade" id="myModallogin" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Entrar no sistema</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="form-group">
-                                    <input type="email" name="usuario_email" class="form-control" placeholder="email"
-                                        required>
-                                </div>
-
-                                <div class="form-group">
-                                    <input type="password" name="usuario_senha" class="form-control" placeholder="senha"
-                                        required>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">fechar</button>
-                                <button type="submit" class="btn btn-primary">entrar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <footer class="footer py-4">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-4 text-lg-start"></div>
-                        <div class="col-lg-4 my-3 my-lg-0">
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-dark btn-social mx-2" href="#!"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-
-                    </div>
-                </div>
-            </footer>
-
-            <script src="js/jquery-3.3.1.js"></script>
-            <script src="js/bootstrap.js"></script>
-
-            <!-- Bootstrap core JS-->
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-            <!-- Core theme JS-->
-            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
-        </body>
     </body>
+  </body>
 
 </html>
