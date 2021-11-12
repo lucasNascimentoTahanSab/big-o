@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <script type="module" src="js/feed.js"></script>
     <link rel="icon" type="image/x-icon" href="img/logo.svg" />
     <link href="css/generalStructure.css" rel="stylesheet" />
     <title>BigO!</title>
@@ -15,7 +16,7 @@
 
     <body>
       <nav>
-        <div class="navbar__item navbar__item--left navbar__hamburguer"></div>
+        <div class="navbar__item"></div>
         <div class="navbar__item">
           <div class="navbar__item">
             <div class="input-search-container">
@@ -26,8 +27,28 @@
           <button class="button--call-to-action no-select">Pesquisar</button>
         </div>
         <div class="navbar__item navbar__item--right">
+          <div id="profile" class="profile-container">
+            <div class="profile-picture clickable"></div>
+            <aside id="profile-popover" class="popover hidden">
+              <div class="popover__top"></div>
+              <div class="popover__body">
+                <span id="profile-button" class="clickable no-select">Perfil</span>
+                <hr class="popover__division">
+                <span class="clickable no-select">Sair</span>
+              </div>
+            </aside>
+          </div>
         </div>
       </nav>
+      <main class="feed-container">
+        <section class="navbar__item">
+          <div class="feed-container__filters"></div>
+        </section>
+        <section class="navbar__item navbar__item--central">
+          <article></article>
+        </section>
+        <section class="navbar__item"></section>
+      </main>
     </body>
   </body>
 
