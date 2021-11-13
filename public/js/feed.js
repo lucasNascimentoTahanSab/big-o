@@ -1,6 +1,7 @@
 window.addEventListener('load', () => {
   document.getElementById('profile').addEventListener('click', abrirFecharPopover);
   document.getElementById('profile-button').addEventListener('click', irParaPerfilDoUsuario);
+  document.getElementById('bookmark').addEventListener('click', favoritarPost);
 });
 
 window.addEventListener('click', fecharPopoverQuandoClicandoFora);
@@ -33,4 +34,9 @@ function fecharPopoverQuandoClicandoFora(event) {
  */
 function irParaPerfilDoUsuario() {
   document.location.href = '/user';
+}
+
+function favoritarPost(event) {
+  if (event.target.src.endsWith('img/bookmark.svg')) event.target.src = event.target.src.replace('img/bookmark.svg', 'img/bookmark-selected.svg');
+  else event.target.src = event.target.src.replace('img/bookmark-selected.svg', 'img/bookmark.svg');
 }
