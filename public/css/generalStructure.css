@@ -94,6 +94,11 @@ img {
   height: 100%;
 }
 
+embed {
+  width: 100%;
+  height: 100%;
+}
+
 .navbar__item {
   position: relative;
   display: flex;
@@ -169,6 +174,69 @@ img {
   overflow: hidden;
 }
 
+.profile-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 5rem;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+  padding-inline: 5rem;
+  height: fit-content;
+}
+
+.profile-picture-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5rem;
+  width: 75%;
+  height: fit-content;
+}
+
+.profile__item-header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: .9375rem;
+  width: 100%;
+}
+
+.profile__navbar {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent;
+  gap: .9375rem;
+  height: fit-content;
+  width: 100%;
+  padding: 0;
+}
+
+.profile__navbar-item {
+  width: fit-content;
+  padding-bottom: .75rem;
+  border-bottom: 0.1875rem solid transparent;
+}
+
+.profile__navbar-item--selected {
+  border-bottom: .1875rem solid var(--bo-color-dark);
+}
+
+.profile-edit {
+  width: 1.25rem;
+}
+
 .feed-container {
   display: flex;
   align-items: flex-start;
@@ -222,6 +290,11 @@ img {
 
 .feed__post-header--bold {
   font-weight: var(--bo-font-weight-title);
+}
+
+.feed__post-header--bold--large {
+  font-weight: var(--bo-font-weight-title);
+  font-size: var(--bo-font-size-title--post);
 }
 
 .feed__post-header--light {
@@ -321,6 +394,7 @@ img {
   flex-direction: column;
   justify-content: center;
   gap: .3125rem;
+  width: 100%;
 }
 
 .input-search-container {
@@ -342,16 +416,21 @@ img {
   border-color: var(--bo-color-white);
 }
 
-.profile-container {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  position: relative;
-}
-
 .profile-picture {
   width: 2.5rem;
   height: 2.5rem;
+  border-radius: 50%;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.profile-picture-name {
+  gap: .9375rem;
+}
+
+.profile-picture--large {
+  width: 5rem;
+  height: 5rem;
   border-radius: 50%;
   background-color: transparent;
   overflow: hidden;
