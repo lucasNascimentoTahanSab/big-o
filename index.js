@@ -53,11 +53,23 @@ app.get('/feed', (req, res) => carregarFeed(req, res));
  */
 app.get('/user', (req, res) => carregarPaginaDoUsuario(req, res));
 
+app.get('/selectpublicacoes', (req, res) => {
+  let sql = "SELECT * FROM publicacoes";
+  let query = conn.query(sql, (err, results) => {
+    if (err) throw err;
+    res.render('feed_view', {
+      results: results
+    });
+  });
+});
+
 /**
  * Callback invocada sempre que um novo usuário for inserido
  * na base de dados.
  */
 app.post('/save', (req, res) => inserirUsuario(req, res));
+
+app.post('/savepublicacoes', (req, res) => addpublicacao(req, res));
 
 /**
  * Callback invocada sempre que uma atualização for realizada
@@ -137,6 +149,25 @@ function inserirUsuario(req, res) {
 
     res.redirect('/');
   });
+}
+
+function addpublicacao(req, res) {
+  if (req.session.loggedin) {
+
+    const sql = `
+  INSERT INTO publicacoes SET
+  publicacoes_titulo = '${req.body.publicacoes_titulo}',
+  publicacoes_descricao = '${req.body.publicacoes_descricao}',
+  publicacoes_filtro = '${req.body.publicacoes_filtro}',
+  publicacoes_img = '${req.body.publicacoes_img}',
+  publicacoes_usuario = '${req.session.usuario_name}'`;
+
+    mysqlConnection.query(sql, erro => {
+      if (erro) throw erro;
+
+      res.redirect('/feed');
+    });
+  }
 }
 
 function atualizarUsuario(req, res) {

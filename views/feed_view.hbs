@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.js"></script>
     <script type="module" src="js/feed.js"></script>
     <link rel="icon" type="image/x-icon" href="img/logo.svg" />
     <link href="css/generalStructure.css" rel="stylesheet" />
@@ -17,15 +19,16 @@
 
     <body>
       <nav>
-        <div class="navbar__item"></div>
+        <div class="navbar__item navbar__item--left">
+          <button class="navbar__button no-select" data-toggle="modal" data-target="#post">Adicionar postagem</button>
+        </div>
         <div class="navbar__item">
           <div class="navbar__item">
             <div class="input-search-container">
-              <input class="input--without-border">
+              <input id="search" class="input--without-border">
               <img class="input__image" src="img/search.svg">
             </div>
           </div>
-          <button class="button--call-to-action no-select">Pesquisar</button>
         </div>
         <div class="navbar__item navbar__item--right">
           <div id="profile" class="profile-container">
@@ -47,8 +50,9 @@
         <section class="feed__item">
           <div class="container-structure"></div>
         </section>
-        <section class="feed__item feed__item--central">
-          <article class="container-structure feed__post">
+        <section class="feed__item feed__item--central" data-type="post-container">
+          <article class="container-structure feed__post" data-type="post"
+            data-title="O que é a inteligência artificial?">
             <img id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
             <header class="feed__post-header">
               <div id="profile" class="profile-container">
@@ -127,6 +131,47 @@
         <section class="feed__item"></section>
       </main>
     </body>
+
+    <form action="/savepublicacoes" method="post">
+      <div id="post" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal__header">
+              <button data-dismiss="modal" aria-label="Close">
+                <img src="img/close.svg" alt="Fechar tela de login">
+              </button>
+            </div>
+            <section class="modal__form-container">
+              <h2>Adicionar publicação</h2>
+              <div class="input-container">
+                <label for="titulo">Titulo</label>
+                <input id="titulo" class="input--text" type="texte" name="publicacoes_titulo" required>
+              </div>
+              <div class="input-container">
+                <label for="descricao">Descricao</label>
+                <input id="descricao" class="input--text" type="text" name="publicacoes_descricao" required>
+              </div>
+              <label for="filtro">Assunto:</label>
+              <select name="publicacoes_filtro" id="filtro">
+                <option value="ia">IA</option>
+                <option value="cg">Computação gráfica</option>
+                <option value="pi">Processamento de imagens</option>
+                <option value="pro">Programação</option>
+              </select>
+              <form action="/action_page.php">
+                <label for="img">Selecionar imagem:</label>
+                <input type="file" id="img" name="publicacoes_img" accept="image/*">
+
+              </form>
+              <footer class="modal__form-footer">
+                <button class="button--call-to-action" type="submit">Adicionar</button>
+              </footer>
+            </section>
+          </div>
+        </div>
+      </div>
+    </form>
   </body>
 
 </html>

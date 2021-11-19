@@ -1,7 +1,11 @@
+let postagens = [];
+
 window.addEventListener('load', () => {
   document.getElementById('profile').addEventListener('click', abrirFecharPopover);
   document.getElementById('profile-button').addEventListener('click', irParaPerfilDoUsuario);
   document.getElementById('bookmark').addEventListener('click', favoritarPost);
+  document.getElementById('search').addEventListener('input', filtrarPostagens);
+  obterPostagens();
 });
 
 window.addEventListener('click', fecharPopoverQuandoClicandoFora);
@@ -39,4 +43,32 @@ function irParaPerfilDoUsuario() {
 function favoritarPost(event) {
   if (event.target.src.endsWith('img/bookmark.svg')) event.target.src = event.target.src.replace('img/bookmark.svg', 'img/bookmark-selected.svg');
   else event.target.src = event.target.src.replace('img/bookmark-selected.svg', 'img/bookmark.svg');
+}
+
+/**
+ * Método responsável pela obtenção das postagens apresentadas
+ * para posterior filtragem.
+ */
+function obterPostagens() {
+  postagens = document.querySelectorAll('[data-type="post"]');
+}
+
+/**
+ * Método responsável pela atualização das postagens apresentadas
+ * de acordo com filtro selecionado pelo usuário na barra de pesquisa. 
+ */
+function filtrarPostagens(event) {
+  const postagensFiltradas = Array.from(postagens).filter(postagem => postagem.dataset.title.toLowerCase().includes(event.target.value));
+  removerPostagens();
+  incluirPostagens(postagensFiltradas);
+}
+
+function removerPostagens() {
+  const containerPostagens = document.querySelector('[data-type="post-container"]');
+  containerPostagens.innerHTML = null;
+}
+
+function incluirPostagens(postagens) {
+  const containerPostagens = document.querySelector('[data-type="post-container"]');
+  postagens.forEach(postagem => containerPostagens.appendChild(postagem));
 }

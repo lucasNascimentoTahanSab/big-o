@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 23-Out-2021 às 13:22
+-- Generation Time: 12-Nov-2021 às 23:27
 -- Versão do servidor: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -62,6 +62,32 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_price`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `publicacoes`
+--
+
+CREATE TABLE `publicacoes` (
+  `publicacoes_id` int(11) NOT NULL,
+  `publicacoes_titulo` varchar(100) NOT NULL,
+  `publicacoes_descricao` varchar(500) NOT NULL,
+  `publicacoes_usuario` varchar(50) NOT NULL,
+  `publicacoes_data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `publicacoes_img` varchar(100) NOT NULL,
+  `publicacoes_filtro` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Extraindo dados da tabela `publicacoes`
+--
+
+INSERT INTO `publicacoes` (`publicacoes_id`, `publicacoes_titulo`, `publicacoes_descricao`, `publicacoes_usuario`, `publicacoes_data`, `publicacoes_img`, `publicacoes_filtro`) VALUES
+(9, 'batata\r\n', 'ifaiojfoia', 'undefined', '2021-11-12 14:17:45', '171121-ConsumismoB.png', 'pi'),
+(8, '  ia', 'ia é chatp', 'undefined', '2021-11-12 13:53:06', '20211005_101735.jpg', 'ia'),
+(7, 'Inteligência artificial', 'ia é foda', 'undefined', '2021-11-12 13:51:17', 'logo_size_invert.jpg', 'ia'),
+(6, 'wgsbvfvcvx', 'vxcvxcv', 'ben10', '2021-11-12 13:45:17', 'demonstrating.jpg', 'pi');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuario`
 --
 
@@ -82,7 +108,8 @@ INSERT INTO `usuario` (`usuario_id`, `usuario_name`, `usuario_email`, `usuario_s
 (4, 'Thiago', 'thiago2@gmail.com', 'thiago123'),
 (5, 'stephane', 'stephane@gmail.com', 'stephane123'),
 (6, 'LucasN', 'lucasnascimento@gmail.com', 'lucasn123'),
-(8, 'xuxa', 'xuxa@gmail.com', 'xuxa123');
+(8, 'xuxa', 'xuxa@gmail.com', 'xuxa123'),
+(11, 'rafael', 'rafael@gmail.com', '12345');
 
 --
 -- Indexes for dumped tables
@@ -99,6 +126,12 @@ ALTER TABLE `accounts`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `publicacoes`
+--
+ALTER TABLE `publicacoes`
+  ADD PRIMARY KEY (`publicacoes_id`);
 
 --
 -- Indexes for table `usuario`
@@ -121,10 +154,15 @@ ALTER TABLE `accounts`
 ALTER TABLE `product`
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `publicacoes`
+--
+ALTER TABLE `publicacoes`
+  MODIFY `publicacoes_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

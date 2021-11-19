@@ -70,6 +70,7 @@ button {
   font-size: var(--bo-font-size-text);
   font-family: var(--bo-font-family-text);
   font-weight: var(--bo-font-weight-text);
+  color: --bo-color-white;
   border: none;
   cursor: pointer;
 }
