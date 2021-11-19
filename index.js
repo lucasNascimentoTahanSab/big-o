@@ -60,6 +60,12 @@ app.get('/user', (req, res) => carregarPaginaDoUsuario(req, res));
 app.post('/save', (req, res) => inserirUsuario(req, res));
 
 /**
+ * Callback invocada sempre que uma nova publicação for inserida
+ * na base de dados.
+ */
+app.post('/savepublicacoes', (req, res) => addpublicacao(req, res));
+
+/**
  * Callback invocada sempre que uma atualização for realizada
  * no registro de um usuário.
  */
@@ -105,7 +111,14 @@ function carregarFeed(req, res) {
     mysqlConnection.query(sql, (erro, resultados) => {
       if (erro) throw erro;
 
-      res.render('feed_view', { results: resultados });
+      const users = resultados;
+      const sqlPost = `SELECT * FROM publicacoes`;
+      mysqlConnection.query(sqlPost, (erro, resultados) => {
+        if (erro) throw erro;
+
+        const posts = resultados;
+        res.render('feed_view', { users, posts });
+      });
     });
   } else {
     res.send('Entre com um email valido!');
@@ -117,11 +130,18 @@ function carregarFeed(req, res) {
  * repassando o registro do usuário atual. 
  */
 function carregarPaginaDoUsuario(req, res) {
-  const sql = `SELECT * FROM usuario WHERE usuario_email  = '${req.session.usuario_email}'`;
-  mysqlConnection.query(sql, (erro, resultados) => {
+  const sqlUser = `SELECT * FROM usuario WHERE usuario_email  = '${req.session.usuario_email}'`;
+  mysqlConnection.query(sqlUser, (erro, resultados) => {
     if (erro) throw erro;
 
-    res.render('user_view', { results: resultados });
+    const usuario = resultados[0];
+    const sqlPost = `SELECT * FROM publicacoes WHERE publicacoes_usuario  = '${req.session.usuario_email}'`;
+    mysqlConnection.query(sqlPost, (erro, resultados) => {
+      if (erro) throw erro;
+
+      const posts = resultados;
+      res.render('user', { usuario, posts })
+    });
   });
 }
 
@@ -139,13 +159,32 @@ function inserirUsuario(req, res) {
   });
 }
 
+function addpublicacao(req, res) {
+  if (req.session.loggedin) {
+
+    const sql = `
+  INSERT INTO publicacoes SET
+  publicacoes_titulo = '${req.body.publicacoes_titulo}',
+  publicacoes_descricao = '${req.body.publicacoes_descricao}',
+  publicacoes_filtro = '${req.body.publicacoes_filtro}',
+  publicacoes_img = '${req.body.publicacoes_img}',
+  publicacoes_usuario = '${req.session.usuario_email}'`;
+
+    mysqlConnection.query(sql, erro => {
+      if (erro) throw erro;
+
+      res.redirect('/feed');
+    });
+  }
+}
+
 function atualizarUsuario(req, res) {
   const sql = `
     UPDATE usuario SET 
       usuario_name = '${req.body.usuario_name}',
       usuario_email = '${req.body.usuario_email}',
       usuario_senha = '${req.body.usuario_senha}' 
-    WHERE usuario_id = '${req.body.id}'`;
+    WHERE usuario_id = '${req.session.usuario_id}'`;
   mysqlConnection.query(sql, erro => {
     if (erro) throw erro;
 
@@ -154,7 +193,7 @@ function atualizarUsuario(req, res) {
 }
 
 function deletarUsuario(req, res) {
-  const sql = `DELETE FROM usuario WHERE usuario_id = '${req.body.usuario_id}'`;
+  const sql = `DELETE FROM usuario WHERE usuario_id = '${req.session.usuario_id}'`;
   mysqlConnection.query(sql, erro => {
     if (erro) throw erro;
 
@@ -184,7 +223,8 @@ function encaminharUsuarioParaFeedCasoExista(credenciais, req, res) {
   mysqlConnection.query(sql, credenciais, (erro, resultados) => {
     if (resultados.length > 0) {
       req.session.loggedin = true;
-      req.session.usuario_email = credenciais[0];
+      req.session.usuario_email = resultados[0].usuario_email;
+      req.session.usuario_id = resultados[0].usuario_id;
       res.redirect('/feed');
     } else {
       res.send('Email ou senha incorretos!');

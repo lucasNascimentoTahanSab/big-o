@@ -26,3 +26,7 @@ function irParaConteudoDaPagina() {
     behavior: "smooth"
   });
 }
+
+function filtrarPostagens(event) {
+  return postagens.filter(postagem => postagem.title.contains(event.target.value));
+}
