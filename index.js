@@ -140,7 +140,7 @@ function carregarPaginaDoUsuario(req, res) {
       if (erro) throw erro;
 
       const posts = resultados;
-      res.render('user', { usuario, posts })
+      res.render('user_view', { usuario, posts })
     });
   });
 }

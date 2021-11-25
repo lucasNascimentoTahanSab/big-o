@@ -3,7 +3,8 @@ let postagens = [];
 window.addEventListener('load', () => {
   document.getElementById('profile').addEventListener('click', abrirFecharPopover);
   document.getElementById('profile-button').addEventListener('click', irParaPerfilDoUsuario);
-  document.getElementById('bookmark').addEventListener('click', favoritarPost);
+  document.getElementById('logout-button').addEventListener('click', sair);
+  document.querySelectorAll('[data-id="bookmark"]').forEach(post => post.addEventListener('click', favoritarPost));
   document.getElementById('search').addEventListener('input', filtrarPostagens);
   obterPostagens();
 });
@@ -38,6 +39,14 @@ function fecharPopoverQuandoClicandoFora(event) {
  */
 function irParaPerfilDoUsuario() {
   document.location.href = '/user';
+}
+
+/**
+ * Método responsável por redirecionar o usuário para 
+ * página inicial.
+ */
+function sair() {
+  document.location.href = '/home';
 }
 
 function favoritarPost(event) {

@@ -23,11 +23,9 @@
           <button class="navbar__button no-select" data-toggle="modal" data-target="#post">Adicionar postagem</button>
         </div>
         <div class="navbar__item">
-          <div class="navbar__item">
-            <div class="input-search-container">
-              <input id="search" class="input--without-border">
-              <img class="input__image" src="img/search.svg">
-            </div>
+          <div class="input-search-container">
+            <input id="search" class="input--without-border">
+            <img class="input__image" src="img/search.svg">
           </div>
         </div>
         <div class="navbar__item navbar__item--right">
@@ -40,7 +38,7 @@
               <div class="popover__body">
                 <span id="profile-button" class="clickable no-select">Perfil</span>
                 <hr class="popover__division">
-                <span class="clickable no-select">Sair</span>
+                <span id="logout-button" class="clickable no-select">Sair</span>
               </div>
             </aside>
           </div>
@@ -51,82 +49,72 @@
           <div class="container-structure"></div>
         </section>
         <section class="feed__item feed__item--central" data-type="post-container">
-          <article class="container-structure feed__post" data-type="post"
-            data-title="O que é a inteligência artificial?">
-            <img id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
-            <header class="feed__post-header">
-              <div id="profile">
-                <div class="profile-picture clickable">
-                  <img src="img/profile-picture.svg">
+          {{#each posts}}
+            <article class="container-structure feed__post" data-type="post" data-title={{publicacoes_titulo}}>
+              <img data-id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
+              <header class="feed__post-header">
+                <div id="profile">
+                  <div class="profile-picture clickable">
+                    <img src="img/profile-picture.svg">
+                  </div>
                 </div>
-              </div>
-              <div>
-                <span class="feed__post-header--bold">Lucas Spartacus</span>
-                <br>
-                <span class="feed__post-header--light">Postado em 22/10/2021</span>
-              </div>
-              <div>
-              </div>
-            </header>
-            <section class="feed__post-content">
-              <h2 class="feed__post-content-title">O que é a inteligência artificial?</h2>
-              <p>
-                A inteligência artificial é um ramo da ciência da computação que busca simular a
-                inteligência humana em uma máquina. Os sistemas de IA são regidos por algoritmos
-                usando técnicas como machine learning e deep learning para demonstrar comportamento
-                “inteligente”.
-              </p>
-              <p>
-                A tecnologia teve sua definição conceitual nos idos dos anos 1950,
-                na Universidade de Carnegie Mellon. Os cientistas Herbert Simon e Allen Newell foram
-                os pais dessa ciência, criando, nessa universidade, o primeiro laboratório dedicado
-                à inteligência artificial no âmbito acadêmico.
-              </p>
-              <img src="img/iajpeg.jpeg">
-            </section>
-            <section class="container-structure feed__post-comments">
-              <div class="feed__post-comments-area">
-                <div class="feed__post-comments-item">
-                  <div id="profile">
-                    <div class="profile-picture clickable">
-                      <img src="img/profile-picture2.svg">
+                <div>
+                  <span class="feed__post-header--bold">Lucas Spartacus</span>
+                  <br>
+                  <span class="feed__post-header--light">Postado em 22/10/2021</span>
+                </div>
+                <div>
+                </div>
+              </header>
+              <section class="feed__post-content">
+                <h2 class="feed__post-content-title">{{publicacoes_titulo}}</h2>
+                <p>{{publicacoes_descricao}}</p>
+                <img src="img/iajpeg.jpeg">
+              </section>
+              <section class="container-structure feed__post-comments">
+                <div class="feed__post-comments-area">
+                  <div class="feed__post-comments-item">
+                    <div id="profile">
+                      <div class="profile-picture clickable">
+                        <img src="img/profile-picture2.svg">
+                      </div>
+                    </div>
+                    <div>
+                      <span class="feed__post-header--bold">Lucas Nascimento</span>
+                      <br>
+                      <p>Achei muito legal seu artigo. Obrigado por compartilhar.</p>
                     </div>
                   </div>
-                  <div>
-                    <span class="feed__post-header--bold">Lucas Nascimento</span>
-                    <br>
-                    <p>Achei muito legal seu artigo. Obrigado por compartilhar.</p>
-                  </div>
-                </div>
-                <div class="feed__post-comments-item feed__post-comments-subitem">
-                  <div id="profile">
-                    <div class="profile-picture clickable">
-                      <img src="img/profile-picture.svg">
+                  <div class="feed__post-comments-item feed__post-comments-subitem">
+                    <div id="profile">
+                      <div class="profile-picture clickable">
+                        <img src="img/profile-picture.svg">
+                      </div>
+                    </div>
+                    <div>
+                      <span class="feed__post-header--bold">Lucas Spartacus</span>
+                      <br>
+                      <p>Vlws. Sempre é bom compartilhar conhecimento.</p>
                     </div>
                   </div>
-                  <div>
-                    <span class="feed__post-header--bold">Lucas Spartacus</span>
-                    <br>
-                    <p>Vlws. Sempre é bom compartilhar conhecimento.</p>
-                  </div>
-                </div>
-                <div class="feed__post-comments-item">
-                  <div id="profile">
-                    <div class="profile-picture clickable">
-                      <img src="img/profile-picture3.svg">
+                  <div class="feed__post-comments-item">
+                    <div id="profile">
+                      <div class="profile-picture clickable">
+                        <img src="img/profile-picture3.svg">
+                      </div>
+                    </div>
+                    <div>
+                      <span class="feed__post-header--bold">Ygor</span>
+                      <br>
+                      <p>Maneiro d+ estou estudando isso no 7° período.</p>
                     </div>
                   </div>
-                  <div>
-                    <span class="feed__post-header--bold">Ygor</span>
-                    <br>
-                    <p>Maneiro d+ estou estudando isso no 7° período.</p>
-                  </div>
+                  <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span>
                 </div>
-                <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span>
-              </div>
-              <textarea class="form-control" rows="3" placeholder="Adicione um comentário à postagem"></textarea>
-            </section>
-          </article>
+                <textarea class="form-control" rows="3" placeholder="Adicione um comentário à postagem"></textarea>
+              </section>
+            </article>
+          {{/each}}
         </section>
         <section class="feed__item"></section>
       </main>
