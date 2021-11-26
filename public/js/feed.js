@@ -3,8 +3,10 @@ let postagens = [];
 window.addEventListener('load', () => {
   document.getElementById('profile').addEventListener('click', abrirFecharPopover);
   document.getElementById('profile-button').addEventListener('click', irParaPerfilDoUsuario);
-  document.getElementById('bookmark').addEventListener('click', favoritarPost);
+  document.getElementById('logout-button').addEventListener('click', sair);
+  document.querySelectorAll('[data-id="bookmark"]').forEach(post => post.addEventListener('click', favoritarPost));
   document.getElementById('search').addEventListener('input', filtrarPostagens);
+  document.querySelectorAll('[data-id="submit-comment"]')?.forEach(submit => submit.addEventListener('click', inserirComentario));
   obterPostagens();
 });
 
@@ -38,6 +40,26 @@ function fecharPopoverQuandoClicandoFora(event) {
  */
 function irParaPerfilDoUsuario() {
   document.location.href = '/user';
+}
+
+/**
+ * Método responsável por redirecionar o usuário para 
+ * página inicial.
+ */
+function sair() {
+  document.location.href = '/home';
+}
+
+function inserirComentario(event) {
+  const idPublicacao = document.querySelector(`[id="idPublicacao"][data-post="${event.target.dataset.post}"]`).value;
+  const descricao = document.querySelector(`[id="descricao"][data-post="${event.target.dataset.post}"]`).value;
+  if (!descricao) return;
+
+  $.post('/comment', { idPublicacao, descricao });
+}
+
+function inserirFavorito(event) {
+
 }
 
 function favoritarPost(event) {
