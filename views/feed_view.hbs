@@ -94,10 +94,11 @@
                   {{!-- <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span> --}}
                 </div>
                 <div class="feed__post-comments-add">
-                  <input class="hidden" id="idPublicacao" name="idPublicacao" value={{id}}>
+                  <input class="hidden" id="idPublicacao" name="idPublicacao" data-post={{id}} value={{id}}>
                   <textarea class="form-control" rows="3" placeholder="Adicione um comentário à postagem" id="descricao"
-                    name="descricao" required></textarea>
-                  <button class="button--call-to-action no-select" id="submit-comment">Publicar</button>
+                    name="descricao" data-post={{id}} required></textarea>
+                  <button class="button--call-to-action no-select" data-post={{id}}
+                    data-id="submit-comment">Publicar</button>
                 </div>
               </section>
             </form>

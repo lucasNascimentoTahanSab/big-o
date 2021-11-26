@@ -105,7 +105,6 @@ function carregarFeed(req, res) {
       .then(async retorno => {
         const usuarios = await query.obterUsuarioPorId(req.session.idUsuario);
         const usuario = new entities.Usuario(usuarios[0]);
-        console.log(usuario);
 
         return { ...retorno, usuario };
       })
@@ -124,7 +123,7 @@ function carregarPaginaDoUsuario(req, res) {
   if (req.session.loggedin) {
     query.obterComentarios()
       .then(async comentarios => {
-        const publicacoes = await query.obterPublicacoes();
+        const publicacoes = await query.obterPublicacoesDoUsuario(req.session.idUsuario);
 
         return {
           publicacoes: publicacoes.map(publicacao => new entities.Publicacao(
@@ -147,7 +146,7 @@ function carregarPaginaDoUsuario(req, res) {
 }
 
 function inserirUsuario(req, res) {
-  const usuario = { nome: req.body.nome, email: req.body.email, senha: req.body.senha };
+  const usuario = { nome: req.body.nome, email: req.body.email, senha: req.body.senha, foto: req.body.foto };
   query.inserirUsuario(usuario)
     .then(() => res.redirect('/'))
     .catch(erro => req.send(erro));
@@ -201,7 +200,7 @@ function comentarPublicacao(req, res) {
 
 function atualizarUsuario(req, res) {
   if (req.session.loggedin) {
-    const usuario = { nome: req.body.nome, email: req.body.email, senha: req.body.senha };
+    const usuario = { nome: req.body.nome, email: req.body.email, senha: req.body.senha, id: req.session.idUsuario };
     query.atualizarUsuario(usuario)
       .then(() => res.redirect('/user'))
       .catch(erro => res.send(erro));

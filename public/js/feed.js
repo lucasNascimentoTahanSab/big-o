@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
   document.getElementById('logout-button').addEventListener('click', sair);
   document.querySelectorAll('[data-id="bookmark"]').forEach(post => post.addEventListener('click', favoritarPost));
   document.getElementById('search').addEventListener('input', filtrarPostagens);
-  document.getElementById('submit-comment').addEventListener('click', inserirComentario);
+  document.querySelectorAll('[data-id="submit-comment"]')?.forEach(submit => submit.addEventListener('click', inserirComentario));
   obterPostagens();
 });
 
@@ -50,12 +50,16 @@ function sair() {
   document.location.href = '/home';
 }
 
-function inserirComentario() {
-  const idPublicacao = document.getElementById('idPublicacao').value;
-  const descricao = document.getElementById('descricao').value;
+function inserirComentario(event) {
+  const idPublicacao = document.querySelector(`[id="idPublicacao"][data-post="${event.target.dataset.post}"]`).value;
+  const descricao = document.querySelector(`[id="descricao"][data-post="${event.target.dataset.post}"]`).value;
   if (!descricao) return;
 
   $.post('/comment', { idPublicacao, descricao });
+}
+
+function inserirFavorito(event) {
+
 }
 
 function favoritarPost(event) {
