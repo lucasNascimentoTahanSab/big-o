@@ -31,7 +31,8 @@
         <div class="navbar__item navbar__item--right">
           <div id="profile" class="profile-picture-container">
             <div class="profile-picture clickable">
-              <img src="img/profile-picture.svg">
+              {{!-- <img src="img/profile-picture.svg"> --}}
+              <img src={{usuario.foto}}>
             </div>
             <aside id="profile-popover" class="popover hidden">
               <div class="popover__top"></div>
@@ -50,12 +51,13 @@
         </section>
         <section class="feed__item feed__item--central" data-type="post-container">
           {{#each publicacoes}}
-            <article class="container-structure feed__post" data-type="post" data-title={{titulo}}>
+            <form class="container-structure feed__post" data-type="post" data-title={{titulo}}>
               <img data-id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
               <header class="feed__post-header">
                 <div id="profile">
                   <div class="profile-picture clickable">
-                    <img src="img/profile-picture.svg">
+                    {{!-- <img src="img/profile-picture.svg"> --}}
+                    <img src={{fotoUsuario}}>
                   </div>
                 </div>
                 <div>
@@ -69,7 +71,8 @@
               <section class="feed__post-content">
                 <h2 class="feed__post-content-title">{{titulo}}</h2>
                 <p>{{descricao}}</p>
-                <img src="img/iajpeg.jpeg">
+                {{!-- <img src="img/iajpeg.jpeg"> --}}
+                <img src={{imagem}}>
               </section>
               <section class="container-structure feed__post-comments">
                 <div class="feed__post-comments-area">
@@ -77,7 +80,8 @@
                     <div class="feed__post-comments-item">
                       <div id="profile">
                         <div class="profile-picture clickable">
-                          <img src="img/profile-picture2.svg">
+                          {{!-- <img src="img/profile-picture2.svg"> --}}
+                          <img src={{fotoUsuario}}>
                         </div>
                       </div>
                       <div>
@@ -89,9 +93,14 @@
                   {{/each}}
                   {{!-- <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span> --}}
                 </div>
-                <textarea class="form-control" rows="3" placeholder="Adicione um comentário à postagem"></textarea>
+                <div class="feed__post-comments-add">
+                  <input class="hidden" id="idPublicacao" name="idPublicacao" value={{id}}>
+                  <textarea class="form-control" rows="3" placeholder="Adicione um comentário à postagem" id="descricao"
+                    name="descricao" required></textarea>
+                  <button class="button--call-to-action no-select" id="submit-comment">Publicar</button>
+                </div>
               </section>
-            </article>
+            </form>
           {{/each}}
         </section>
         <section class="feed__item"></section>
@@ -112,7 +121,7 @@
               <h2>Adicionar publicação</h2>
               <div class="input-container">
                 <label for="titulo">Titulo</label>
-                <input id="titulo" class="input--text" type="texte" name="titulo" required>
+                <input id="titulo" class="input--text" type="text" name="titulo" required>
               </div>
               <div class="input-container">
                 <label for="descricao">Descricao</label>

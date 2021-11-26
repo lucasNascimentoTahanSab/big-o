@@ -6,6 +6,7 @@ window.addEventListener('load', () => {
   document.getElementById('logout-button').addEventListener('click', sair);
   document.querySelectorAll('[data-id="bookmark"]').forEach(post => post.addEventListener('click', favoritarPost));
   document.getElementById('search').addEventListener('input', filtrarPostagens);
+  document.getElementById('submit-comment').addEventListener('click', inserirComentario);
   obterPostagens();
 });
 
@@ -47,6 +48,14 @@ function irParaPerfilDoUsuario() {
  */
 function sair() {
   document.location.href = '/home';
+}
+
+function inserirComentario() {
+  const idPublicacao = document.getElementById('idPublicacao').value;
+  const descricao = document.getElementById('descricao').value;
+  if (!descricao) return;
+
+  $.post('/comment', { idPublicacao, descricao });
 }
 
 function favoritarPost(event) {

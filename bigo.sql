@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 26-Nov-2021 às 00:52
+-- Tempo de geração: 26-Nov-2021 às 02:51
 -- Versão do servidor: 5.7.31
 -- versão do PHP: 7.3.21
 
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `comentario` (
   `idPublicacao` int(10) NOT NULL,
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `nomeUsuario` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
-  `fotoUsuario` longblob NOT NULL,
+  `fotoUsuario` longblob,
   `descricao` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `USUARIO` (`idUsuario`),
@@ -74,7 +74,14 @@ CREATE TABLE IF NOT EXISTS `publicacao` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),
   KEY `USUARIO` (`idUsuario`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `publicacao`
+--
+
+INSERT INTO `publicacao` (`titulo`, `descricao`, `imagem`, `idUsuario`, `nomeUsuario`, `fotoUsuario`, `dataPublicacao`, `id`) VALUES
+('O que é a inteligência artificial?', 'A inteligência artificial é um ramo da ciência da computação que busca simular a inteligência humana em uma máquina. Os sistemas de IA são regidos por algoritmos usando técnicas como machine learning e deep learning para demonstrar comportamento “inteligente”.\r\nA tecnologia teve sua definição conceitual nos idos dos anos 1950, na Universidade de Carnegie Mellon. Os cientistas Herbert Simon e Allen Newell foram os pais dessa ciência, criando, nessa universidade, o primeiro laboratório dedicado à inteligência artificial no âmbito acadêmico.', 0x69616a7065672e6a706567, 1, 'Lucas Nascimento ', NULL, '2021-11-25', 1);
 
 -- --------------------------------------------------------
 

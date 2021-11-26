@@ -53,6 +53,8 @@ app.post('/save', (req, res) => inserirUsuario(req, res));
  */
 app.post('/publish', (req, res) => inserirPublicacao(req, res));
 
+app.post('/comment', (req, res) => comentarPublicacao(req, res));
+
 /**
  * Callback invocada sempre que uma atualização for realizada
  * no registro de um usuário.
@@ -89,14 +91,23 @@ function carregarPaginaInicial(req, res) {
  */
 function carregarFeed(req, res) {
   if (req.session.loggedin) {
-    query.obterUsuarioPorId(req.session.idUsuario)
-      .then(async usuarios => {
-        const usuarioFinal = new entities.Usuario(usuarios[0]);
+    query.obterComentarios()
+      .then(async comentarios => {
         const publicacoes = await query.obterPublicacoes();
+
         return {
-          usuario: usuarioFinal,
-          publicacoes: publicacoes.map(publicacao => new entities.Publicacao(publicacao, usuarioFinal))
+          publicacoes: publicacoes.map(publicacao => new entities.Publicacao(
+            publicacao,
+            comentarios.filter(comentario => comentario.idPublicacao === publicacao.id))
+          )
         };
+      })
+      .then(async retorno => {
+        const usuarios = await query.obterUsuarioPorId(req.session.idUsuario);
+        const usuario = new entities.Usuario(usuarios[0]);
+        console.log(usuario);
+
+        return { ...retorno, usuario };
       })
       .then(retorno => res.render('feed_view', { ...retorno }))
       .catch(erro => res.send(erro));
@@ -111,14 +122,22 @@ function carregarFeed(req, res) {
  */
 function carregarPaginaDoUsuario(req, res) {
   if (req.session.loggedin) {
-    query.obterUsuarioPorId(req.session.idUsuario)
-      .then(async usuarios => {
-        const usuarioFinal = new entities.Usuario(usuarios[0]);
-        const publicacoes = await query.obterPublicacoesDoUsuario(req.session.idUsuario);
+    query.obterComentarios()
+      .then(async comentarios => {
+        const publicacoes = await query.obterPublicacoes();
+
         return {
-          usuario: usuarioFinal,
-          publicacoes: publicacoes.map(publicacao => new entities.Publicacao(publicacao, usuarioFinal))
+          publicacoes: publicacoes.map(publicacao => new entities.Publicacao(
+            publicacao,
+            comentarios.filter(comentario => comentario.idPublicacao === publicacao.id))
+          )
         };
+      })
+      .then(async retorno => {
+        const usuarios = await query.obterUsuarioPorId(req.session.idUsuario);
+        const usuario = new entities.Usuario(usuarios[0]);
+
+        return { ...retorno, usuario };
       })
       .then(retorno => res.render('user_view', { ...retorno }))
       .catch(erro => req.send(erro));
@@ -150,6 +169,28 @@ function inserirPublicacao(req, res) {
         };
 
         return query.inserirPublicacao(publicacao);
+      })
+      .then(() => res.redirect('/feed'))
+      .catch(erro => res.send(erro));
+  } else {
+    res.send('Entre com email e senha válidos!');
+  }
+}
+
+function comentarPublicacao(req, res) {
+  if (req.session.loggedin) {
+    query.obterUsuarioPorId(req.session.idUsuario)
+      .then(async usuarios => {
+        const usuario = usuarios[0];
+        const comentario = {
+          idUsuario: req.session.idUsuario,
+          idPublicacao: req.body.idPublicacao,
+          descricao: req.body.descricao,
+          nomeUsuario: usuario.nome,
+          fotoUsuario: usuario.foto
+        };
+
+        return await query.inserirComentario(comentario);
       })
       .then(() => res.redirect('/feed'))
       .catch(erro => res.send(erro));
