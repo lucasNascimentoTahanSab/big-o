@@ -52,7 +52,7 @@
                   </div>
                 </div>
                 <div>
-                  <span class="feed__post-header--bold--large">{{usuario.usuario_name}}</span>
+                  <span class="feed__post-header--bold--large">{{usuario.nome}}</span>
                 </div>
               </div>
               <button class="navbar__item--right profile-edit" data-toggle="modal" data-target="#edit">
@@ -69,8 +69,8 @@
                   class="profile__navbar-item feed__post-header--bold clickable">Favoritos</span>
               </nav>
               <div id="posts-section" class="feed__post">
-                {{#each posts}}
-                  <article class="container-structure feed__post" data-type="post" data-title={{publicacoes_titulo}}>
+                {{#each publicacoes}}
+                  <article class="container-structure feed__post" data-type="post" data-title={{titulo}}>
                     <img data-id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
                     <header class="feed__post-header">
                       <div id="profile">
@@ -79,57 +79,35 @@
                         </div>
                       </div>
                       <div>
-                        <span class="feed__post-header--bold">Lucas Spartacus</span>
+                        <span class="feed__post-header--bold">{{nomeUsuario}}</span>
                         <br>
-                        <span class="feed__post-header--light">Postado em 22/10/2021</span>
+                        <span class="feed__post-header--light">Postado em {{dataPublicacao}}</span>
                       </div>
                       <div>
                       </div>
                     </header>
                     <section class="feed__post-content">
-                      <h2 class="feed__post-content-title">{{publicacoes_titulo}}</h2>
-                      <p>{{publicacoes_descricao}}</p>
+                      <h2 class="feed__post-content-title">{{titulo}}</h2>
+                      <p>{{descricao}}</p>
                       <img src="img/iajpeg.jpeg">
                     </section>
                     <section class="container-structure feed__post-comments">
                       <div class="feed__post-comments-area">
-                        <div class="feed__post-comments-item">
-                          <div id="profile">
-                            <div class="profile-picture clickable">
-                              <img src="img/profile-picture2.svg">
+                        {{#each comentarios}}
+                          <div class="feed__post-comments-item">
+                            <div id="profile">
+                              <div class="profile-picture clickable">
+                                <img src="img/profile-picture2.svg">
+                              </div>
+                            </div>
+                            <div>
+                              <span class="feed__post-header--bold">{{nomeUsuario}}</span>
+                              <br>
+                              <p>{{descricao}}</p>
                             </div>
                           </div>
-                          <div>
-                            <span class="feed__post-header--bold">Lucas Nascimento</span>
-                            <br>
-                            <p>Achei muito legal seu artigo. Obrigado por compartilhar.</p>
-                          </div>
-                        </div>
-                        <div class="feed__post-comments-item feed__post-comments-subitem">
-                          <div id="profile">
-                            <div class="profile-picture clickable">
-                              <img src="img/profile-picture.svg">
-                            </div>
-                          </div>
-                          <div>
-                            <span class="feed__post-header--bold">Lucas Spartacus</span>
-                            <br>
-                            <p>Vlws. Sempre é bom compartilhar conhecimento.</p>
-                          </div>
-                        </div>
-                        <div class="feed__post-comments-item">
-                          <div id="profile">
-                            <div class="profile-picture clickable">
-                              <img src="img/profile-picture3.svg">
-                            </div>
-                          </div>
-                          <div>
-                            <span class="feed__post-header--bold">Ygor</span>
-                            <br>
-                            <p>Maneiro d+ estou estudando isso no 7° período.</p>
-                          </div>
-                        </div>
-                        <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span>
+                        {{/each}}
+                        {{!-- <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span> --}}
                       </div>
                       <textarea class="form-control" rows="3"
                         placeholder="Adicione um comentário à postagem"></textarea>
@@ -138,82 +116,51 @@
                 {{/each}}
               </div>
               <div id="bookmarks-section" class="feed__post hidden">
-                <article class="container-structure feed__post" data-type="post"
-                  data-title="O que é a inteligência artificial?">
-                  <img data-id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
-                  <header class="feed__post-header">
-                    <div id="profile">
-                      <div class="profile-picture clickable">
-                        <img src="img/profile-picture.svg">
+                {{#each publicacoes}}
+                  <article class="container-structure feed__post" data-type="post" data-title={{titulo}}>
+                    <img data-id="bookmark" class="feed__post-bookmark clickable no-select" src="img/bookmark.svg">
+                    <header class="feed__post-header">
+                      <div id="profile">
+                        <div class="profile-picture clickable">
+                          <img src="img/profile-picture.svg">
+                        </div>
                       </div>
-                    </div>
-                    <div>
-                      <span class="feed__post-header--bold">Lucas Spartacus</span>
-                      <br>
-                      <span class="feed__post-header--light">Postado em 22/10/2021</span>
-                    </div>
-                    <div>
-                    </div>
-                  </header>
-                  <section class="feed__post-content">
-                    <h2 class="feed__post-content-title">O que é a inteligência artificial?</h2>
-                    <p>
-                      A inteligência artificial é um ramo da ciência da computação que busca simular a
-                      inteligência humana em uma máquina. Os sistemas de IA são regidos por algoritmos
-                      usando técnicas como machine learning e deep learning para demonstrar comportamento
-                      “inteligente”.
-                    </p>
-                    <p>
-                      A tecnologia teve sua definição conceitual nos idos dos anos 1950,
-                      na Universidade de Carnegie Mellon. Os cientistas Herbert Simon e Allen Newell foram
-                      os pais dessa ciência, criando, nessa universidade, o primeiro laboratório dedicado
-                      à inteligência artificial no âmbito acadêmico.
-                    </p>
-                    <img src="img/iajpeg.jpeg">
-                  </section>
-                  <section class="container-structure feed__post-comments">
-                    <div class="feed__post-comments-area">
-                      <div class="feed__post-comments-item">
-                        <div id="profile">
-                          <div class="profile-picture clickable">
-                            <img src="img/profile-picture2.svg">
+                      <div>
+                        <span class="feed__post-header--bold">{{nomeUsuario}}</span>
+                        <br>
+                        <span class="feed__post-header--light">Postado em {{dataPublicacao}}</span>
+                      </div>
+                      <div>
+                      </div>
+                    </header>
+                    <section class="feed__post-content">
+                      <h2 class="feed__post-content-title">{{titulo}}</h2>
+                      <p>{{descricao}}</p>
+                      <img src="img/iajpeg.jpeg">
+                    </section>
+                    <section class="container-structure feed__post-comments">
+                      <div class="feed__post-comments-area">
+                        {{#each comentarios}}
+                          <div class="feed__post-comments-item">
+                            <div id="profile">
+                              <div class="profile-picture clickable">
+                                <img src="img/profile-picture2.svg">
+                              </div>
+                            </div>
+                            <div>
+                              <span class="feed__post-header--bold">{{nomeUsuario}}</span>
+                              <br>
+                              <p>{{descricao}}</p>
+                            </div>
                           </div>
-                        </div>
-                        <div>
-                          <span class="feed__post-header--bold">Lucas Nascimento</span>
-                          <br>
-                          <p>Achei muito legal seu artigo. Obrigado por compartilhar.</p>
-                        </div>
+                        {{/each}}
+                        {{!-- <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span> --}}
                       </div>
-                      <div class="feed__post-comments-item feed__post-comments-subitem">
-                        <div id="profile">
-                          <div class="profile-picture clickable">
-                            <img src="img/profile-picture.svg">
-                          </div>
-                        </div>
-                        <div>
-                          <span class="feed__post-header--bold">Lucas Spartacus</span>
-                          <br>
-                          <p>Vlws. Sempre é bom compartilhar conhecimento.</p>
-                        </div>
-                      </div>
-                      <div class="feed__post-comments-item">
-                        <div id="profile">
-                          <div class="profile-picture clickable">
-                            <img src="img/profile-picture3.svg">
-                          </div>
-                        </div>
-                        <div>
-                          <span class="feed__post-header--bold">Ygor</span>
-                          <br>
-                          <p>Maneiro d+ estou estudando isso no 7° período.</p>
-                        </div>
-                      </div>
-                      <span class="clickable no-select feed__post-header--light show-more">Mostrar mais</span>
-                    </div>
-                    <textarea class="form-control" rows="3" placeholder="Adicione um comentário à postagem"></textarea>
-                  </section>
-                </article>
+                      <textarea class="form-control" rows="3"
+                        placeholder="Adicione um comentário à postagem"></textarea>
+                    </section>
+                  </article>
+                {{/each}}
               </div>
             </section>
           </article>
@@ -221,7 +168,7 @@
       </main>
     </body>
 
-    <form action="/savepublicacoes" method="post">
+    <form action="/publish" method="post">
       <div id="post" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -235,22 +182,22 @@
               <h2>Adicionar publicação</h2>
               <div class="input-container">
                 <label for="titulo">Titulo</label>
-                <input id="titulo" class="input--text" type="texte" name="publicacoes_titulo" required>
+                <input id="titulo" class="input--text" type="texte" name="titulo" required>
               </div>
               <div class="input-container">
                 <label for="descricao">Descricao</label>
-                <textarea id="descricao" name="publicacoes_descricao" required class="form-control" rows="3"></textarea>
+                <textarea id="descricao" name="descricao" required class="form-control" rows="3"></textarea>
               </div>
-              <label for="filtro">Assunto:</label>
-              <select name="publicacoes_filtro" id="filtro">
+              {{!-- <label for="filtro">Assunto:</label>
+              <select name="filtro" id="filtro">
                 <option value="ia">IA</option>
                 <option value="cg">Computação gráfica</option>
                 <option value="pi">Processamento de imagens</option>
                 <option value="pro">Programação</option>
-              </select>
+              </select> --}}
               <form action="/action_page.php">
                 <label for="img">Selecionar imagem:</label>
-                <input type="file" id="img" name="publicacoes_img" accept="image/*">
+                <input type="file" id="img" name="imagem" accept="image/*">
 
               </form>
               <footer class="modal__form-footer">
@@ -276,15 +223,15 @@
               <h2>Edite seus dados</h2>
               <div class="input-container">
                 <label for="name">Nome</label>
-                <input id="name" class="input--text" type="text" name="usuario_name" required>
+                <input id="name" class="input--text" type="text" name="nome" required>
               </div>
               <div class="input-container">
                 <label for="email">Email</label>
-                <input id="email" class="input--text" type="email" name="usuario_email" required>
+                <input id="email" class="input--text" type="email" name="email" required>
               </div>
               <div class="input-container">
                 <label for="password">Senha</label>
-                <input id="password" class="input--text" type="password" name="usuario_senha" required>
+                <input id="password" class="input--text" type="password" name="senha" required>
               </div>
               <footer class="modal__form-footer">
                 <button class="button--call-to-action" type="submit">Editar</button>
